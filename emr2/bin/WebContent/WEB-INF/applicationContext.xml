@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="
+	   		http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			">
+			
+		<!-- DATABASE ACCESS -->
+		<tx:annotation-driven/>
+	
+		
+		 <context:component-scan base-package="com.ust.emr" use-default-filters="true">
+		 	<context:exclude-filter type="annotation" 
+		 		expression="org.springframework.stereotype.Controller"/>
+		 </context:component-scan>
+		
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://localhost:3306/electronicmedicalrecords" />
+			<property name="username" value="root" />
+			<property name="password" value="" />
+		</bean>
+		
+		<!-- creates a session -->
+		<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			
+			<property name="hibernateProperties">
+				<props>
+				
+					<!-- translate hibernate to sql commands -->
+					<prop key="hibernate.dialect">
+						<!-- use this kay pwede rollback -->
+						org.hibernate.dialect.MySQL5InnoDBDialect 
+					</prop>
+				
+					<!-- validate | update | create | create-drop -->
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+				
+					<!-- shows you sql commands -->
+					<prop key="hibernate.show_sql">true</prop>
+				
+					<!-- Disable the second-level cache -->
+					<prop key="hibernate.cache.provider_class">
+						org.hibernate.cache.NoCacheProvider
+					</prop>
+				
+				</props>
+			</property>
+			
+			<property name="annotatedClasses">
+				<list>
+					<value>com.ust.emr.model.Address</value>
+					<value>com.ust.emr.model.CheckUpRecord</value>
+					<value>com.ust.emr.model.Contact</value>
+					<value>com.ust.emr.model.Doctor</value>
+					<value>com.ust.emr.model.Medication</value>
+					<value>com.ust.emr.model.Nurse</value>
+					<value>com.ust.emr.model.Patient</value>
+					<value>com.ust.emr.model.PersonInfo</value>
+					<value>com.ust.emr.model.Role</value>
+					<value>com.ust.emr.model.User</value>
+					
+				</list>
+			</property>
+			
+		<!-- For managing transactions -->	
+		</bean>
+			<bean name="transactionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+		<!-- Autowire services and daos-->
+		<bean id="userDao" class="com.ust.emr.dao.doctor.UserDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		<bean id="doctorDao" class="com.ust.emr.dao.doctor.DoctorDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+			 
+		<bean id="patientDao" class="com.ust.emr.dao.patient.PatientDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+</beans>

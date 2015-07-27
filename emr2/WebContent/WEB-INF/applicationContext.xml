@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="
+	   		http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util
+			http://www.springframework.org/schema/util/spring-util.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			">-->
+	<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+			
+		<!-- DATABASE ACCESS -->
+		<tx:annotation-driven/>
+	
+		<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+			<property name="maxUploadSize" value="5000000" />
+			<property name="maxInMemorySize" value="5000000" />
+		</bean>
+		 <context:component-scan base-package="com.ust.emr" use-default-filters="true">
+		 	<context:exclude-filter type="annotation" 
+		 		expression="org.springframework.stereotype.Controller"/>
+		 </context:component-scan>
+		
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql:mariadb99057-env-3321818.j.layershift.co.uk" /> 
+			<property name="username" value="root" />
+			<property name="password" value="GIDlim76534" />
+			<!-- <property name="url" value="jdbc:mysql://localhost:3306/emr2" />
+			<property name="username" value="root" />
+			<property name="password" value="" /> -->
+		</bean>
+		
+		<!-- creates a session -->
+		<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			
+			<property name="hibernateProperties">
+				<props>
+				
+					<!-- translate hibernate to sql commands -->
+					<prop key="hibernate.dialect">
+						<!-- use this kay pwede rollback -->
+						org.hibernate.dialect.MySQL5InnoDBDialect 
+					</prop>
+				
+					<!-- validate | update | create | create-drop -->
+					<prop key="hibernate.hbm2ddl.auto">create</prop>
+				
+					<!-- shows you sql commands -->
+					<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.format_sql">true</prop>
+    			<prop key="hibernate.use_sql_comments">true</prop>-->
+					<!-- Disable the second-level cache -->
+					<prop key="hibernate.cache.provider_class">
+						org.hibernate.cache.NoCacheProvider
+					</prop>
+				
+				</props>
+			</property>
+			
+			<property name="annotatedClasses">
+				<list>
+					<value>com.ust.emr.model.Address</value>
+					<value>com.ust.emr.model.Appointment</value>
+					<value>com.ust.emr.model.Image</value>
+					
+					<value>com.ust.emr.model.Archives</value>
+					<value>com.ust.emr.model.CheckUpRecord</value>
+					<value>com.ust.emr.model.Contact</value>
+					<value>com.ust.emr.model.Doctor</value>
+					<value>com.ust.emr.model.Diagnosis</value>
+					<value>com.ust.emr.model.Disease</value>
+					<value>com.ust.emr.model.Medication</value>
+					<value>com.ust.emr.model.MedicationsAndPrescriptions</value>
+					<value>com.ust.emr.model.Medicine</value>
+					<value>com.ust.emr.model.Nurse</value>
+					<value>com.ust.emr.model.Patient</value>
+					<value>com.ust.emr.model.PersonInfo</value>
+					<value>com.ust.emr.model.RevisionHistory</value>
+					<value>com.ust.emr.model.Role</value>
+					<value>com.ust.emr.model.Transaction</value>
+					<value>com.ust.emr.model.User</value>
+					
+					<value>com.ust.emr.model.Joint</value>
+					<value>com.ust.emr.model.PhysicianAssessment</value>
+					<value>com.ust.emr.model.PatientAssessment</value>
+					
+					<value>com.ust.emr.model.Comment</value>
+				
+					<value>com.ust.emr.model.forms.BASDAI</value>
+					<value>com.ust.emr.model.forms.BASFI</value>
+					<value>com.ust.emr.model.forms.BASG</value>
+					<value>com.ust.emr.model.forms.BASMI</value>
+					<value>com.ust.emr.model.forms.CDAI</value>
+					<value>com.ust.emr.model.forms.DamageIndexSLE</value>
+					<value>com.ust.emr.model.forms.DAS28</value>
+					<value>com.ust.emr.model.forms.EUSTAR</value>
+					<value>com.ust.emr.model.forms.InflammatoryMyopathFlowSheet</value>
+					<value>com.ust.emr.model.forms.LaboratoryRequest</value>
+					<value>com.ust.emr.model.forms.MEXSLEDAI</value>
+					<value>com.ust.emr.model.forms.PartsOfBody</value>
+					<value>com.ust.emr.model.forms.PASI</value>
+					<value>com.ust.emr.model.forms.PASIDetail</value>
+					<value>com.ust.emr.model.forms.RodnanSkinScore</value>
+					<value>com.ust.emr.model.forms.SDAI</value>
+					<value>com.ust.emr.model.forms.SLEDAACaseReportForm</value>
+					<value>com.ust.emr.model.forms.SLEDAIScore</value>
+					<value>com.ust.emr.model.forms.SLEFlare</value>
+					<value>com.ust.emr.model.forms.SLEFlowSheet</value>
+					<value>com.ust.emr.model.forms.SSFlowSheet</value>
+					
+					<value>com.ust.emr.model.history.HistoryUpdate</value>
+					<value>com.ust.emr.model.history.MedsUpdate</value>
+					
+					<value>com.ust.emr.model.history.Activities</value>
+					<value>com.ust.emr.model.history.FamilyHistory</value>
+					<value>com.ust.emr.model.history.GeneralInfo</value>					
+					<value>com.ust.emr.model.history.InitialHistory</value>
+					<value>com.ust.emr.model.history.MedicalHistory</value>					
+					<value>com.ust.emr.model.history.Operation</value>
+					<value>com.ust.emr.model.history.PastMedication</value>
+					<value>com.ust.emr.model.history.PastMedications</value>
+					<value>com.ust.emr.model.history.PresentMedication</value>
+					<value>com.ust.emr.model.history.PresentMedications</value>
+					<value>com.ust.emr.model.history.PreviousOperations</value>
+					<value>com.ust.emr.model.history.RheumaHistory</value>
+					<value>com.ust.emr.model.history.SocialHistory</value>
+					<value>com.ust.emr.model.history.SystemsReview</value>
+					 
+				</list>
+			</property>
+			
+		<!-- For managing transactions -->	
+		</bean>
+			<bean name="transactionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+			<property name="nestedTransactionAllowed" value="true"/>
+		</bean>
+		
+		
+		<!-- Autowire users-->
+		<bean id="userDao" class="com.ust.emr.dao.impl.UserDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		<bean id="doctorDao" class="com.ust.emr.dao.impl.DoctorDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+			 
+		<bean id="patientDao" class="com.ust.emr.dao.impl.PatientDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="adminDao" class="com.ust.emr.dao.impl.AdminDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+		<!-- Autowire Patient stuff -->
+		
+		<bean id="nurseDao" class="com.ust.emr.dao.impl.NurseDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="revisionHistoryDao" class="com.ust.emr.dao.impl.RevisionHistoryDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		<bean id="medsDao" class="com.ust.emr.dao.impl.MedicationsAndPrescriptionsDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+		<!-- Autowire forms -->
+		
+		<bean id="formsDao" class="com.ust.emr.dao.impl.FormsDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+		<!-- Comments -->
+		<bean id="commentsDao" class="com.ust.emr.dao.impl.CommentsDaoImpl">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		
+		
+		
+</beans>
