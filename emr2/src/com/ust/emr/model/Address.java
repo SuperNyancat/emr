@@ -32,7 +32,15 @@ public class Address {
 		this.province = province;
 		this.zipCode = zipCode;
 	}
-
+	public Address(Address adr) {
+		super();
+		this.id = adr.id;
+		this.type = adr.type;
+		this.address = adr.address;
+		this.city = adr.city;
+		this.province = adr.province;
+		this.zipCode = adr.zipCode;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "key_id")

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.ust.emr.util1.encryption;
+
 @Entity
 @Table(name = "tbl_disease")
 public class Disease {
@@ -22,7 +24,18 @@ public class Disease {
 	private String stage3Desc;
 	private String stage4Desc;
 	
-	
+	public Disease(){}
+	public Disease(Disease disease){
+		this.setDescription(disease.description);
+		this.setId(disease.id);
+		this.setName(disease.name);
+		this.setStage0Desc(disease.stage0Desc);
+		this.setStage1Desc(disease.stage1Desc);
+		this.setStage2Desc(disease.stage2Desc);
+		this.setStage3Desc(disease.stage3Desc);
+		this.setStage4Desc(disease.stage4Desc);
+		this.setType(disease.type);
+	}
 	
 	
 
@@ -108,5 +121,32 @@ public class Disease {
 	public void setStage4Desc(String stage4Desc) {
 		this.stage4Desc = stage4Desc;
 	}
-
+	public Disease encrypt(){
+		encryption aes = new encryption();
+		Disease disease = new Disease();
+		disease.setId(id);
+		disease.setDescription(aes.encrypt(description));
+		disease.setName(aes.encrypt(name));
+		disease.setStage0Desc(aes.encrypt(stage0Desc));
+		disease.setStage1Desc(aes.encrypt(stage1Desc));
+		disease.setStage2Desc(aes.encrypt(stage2Desc));
+		disease.setStage3Desc(aes.encrypt(stage3Desc));
+		disease.setStage4Desc(aes.encrypt(stage4Desc));
+		disease.setType(aes.encrypt(type));
+		return disease;
+	}
+	public Disease decrypt(){
+		encryption aes = new encryption();
+		Disease disease = new Disease();
+		disease.setId(id);
+		disease.setDescription(aes.decrypt(description));
+		disease.setName(aes.decrypt(name));
+		disease.setStage0Desc(aes.decrypt(stage0Desc));
+		disease.setStage1Desc(aes.decrypt(stage1Desc));
+		disease.setStage2Desc(aes.decrypt(stage2Desc));
+		disease.setStage3Desc(aes.decrypt(stage3Desc));
+		disease.setStage4Desc(aes.decrypt(stage4Desc));
+		disease.setType(aes.decrypt(type));
+		return disease;
+	}
 }

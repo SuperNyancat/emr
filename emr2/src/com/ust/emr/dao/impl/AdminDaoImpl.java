@@ -102,6 +102,9 @@ public class AdminDaoImpl implements AdminDao {
 		if (nurses.isEmpty()) {
 			throw new DataAccessException("There are no nurses with that name.");
 		} else {
+			for(int i = 0 ; i < nurses.size(); i++){
+				
+			}
 			return nurses;
 		}
 
@@ -110,13 +113,13 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public void AddMedicine(Medicine medicine) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(medicine);
+		session.save(medicine.encrypt());
 	}
 
 	@Override
 	public void AddDisease(Disease disease) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(disease);
+		session.save(disease.encrypt());
 	}
 
 	@Override
@@ -129,7 +132,7 @@ public class AdminDaoImpl implements AdminDao {
 		
 		Medicine medicine = (Medicine) query.uniqueResult();
 		
-		return medicine;
+		return medicine.decrypt();
 	}
 
 	@Override
@@ -142,7 +145,7 @@ public class AdminDaoImpl implements AdminDao {
 		
 		Disease disease = (Disease) query.uniqueResult();
 		
-		return disease;
+		return disease.decrypt();
 	}
 
 	@Override
@@ -227,13 +230,13 @@ public class AdminDaoImpl implements AdminDao {
 		@Override
 		public void updateDisease(Disease disease) {
 			Session session = sessionFactory.getCurrentSession();
-			session.update(disease);
+			session.update(disease.encrypt());
 		}
 
 		@Override
 		public void updateMedicine(Medicine medicine) {
 			Session session = sessionFactory.getCurrentSession();
-			session.update(medicine);
+			session.update(medicine.encrypt());
 		}
 
 		@Override

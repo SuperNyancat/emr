@@ -28,6 +28,14 @@ public class Contact {
 		this.type = type;
 	}
 	
+	public Contact(Contact contact) {
+		super();
+		this.id = contact.id;
+		this.mobileNumber = contact.mobileNumber;
+		this.phoneNumber = contact.phoneNumber;
+		this.type = contact.type;
+	}
+	
 	public String toString(){
 		return "Contact[id=" + id + " type=" + type + " mobileNumber=" + mobileNumber + " phoneNumber=" + phoneNumber + "]";
 	}

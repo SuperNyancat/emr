@@ -78,7 +78,7 @@ public class Medicine {
 		this.sideEffects = sideEffects;
 	}
 	
-	Medicine encrypt(){
+	public Medicine encrypt(){
 		encryption aes = new encryption();
 		Medicine medicine = new Medicine();
 		medicine.setId(id);
@@ -88,7 +88,7 @@ public class Medicine {
 		medicine.setUses(aes.encrypt(uses));
 		return medicine;
 	}
-	Medicine decrypt(){
+	public Medicine decrypt(){
 		encryption aes = new encryption();
 		Medicine medicine = new Medicine();
 		medicine.setId(id);

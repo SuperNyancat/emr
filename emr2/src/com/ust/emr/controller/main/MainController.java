@@ -83,12 +83,12 @@ public class MainController {
 			User user = null;
 			user = userDao.findUserByUsername(username);
 			System.out.println(user);
-			if(username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Doctor")){
+			if(username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Doctor")&&user.isEnabled()){
 				return doctorHomepageAssembler(model, session);
 			}
-			else if(username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Administrator")){
+			else if(username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Administrator")&&user.isEnabled()){
 				return AdminHomepageAssembler(model,session);
-			} else if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Nurse")) {
+			} else if (username.equals(user.getUsername()) && password.equals(user.getPassword()) && user.getRole().getRoleType().equalsIgnoreCase("Nurse")&&user.isEnabled()) {
 				return nurseHomepageAssembler(model,session);
 			}else {
 				throw new DataAccessException("null");

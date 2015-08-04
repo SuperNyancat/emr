@@ -45,7 +45,29 @@ public class PersonInfo {
 	private String securityQuestion;
 	private String securityAnswer;
 
-	public PersonInfo() {
+	//angelo revision (addition)
+	public PersonInfo(){
+	}
+	public PersonInfo(PersonInfo pf) {
+		this.id = pf.id;
+		this.firstName = pf.firstName;
+		this.lastName = pf.lastName;
+		this.maidenName = pf.maidenName;
+		this.email = pf.email;
+		this.age = pf.age;
+		this.dateOfBirth = pf.dateOfBirth;
+		this.sex = pf.sex;
+		this.occupation = pf.occupation;
+		this.companyName = pf.companyName;
+		this.revisionHistory = pf.revisionHistory;
+		this.securityQuestion = pf.securityQuestion;
+		this.securityAnswer = pf.securityAnswer;
+		for(int i = 0; i < pf.contacts.size(); i++){
+			this.contacts.add(new Contact(pf.contacts.get(i)));
+		}
+		for(int i = 0; i < pf.addresses.size(); i++){
+			this.addresses.add(new Address(pf.addresses.get(i)));
+		}
 	}
 
 	@Id
@@ -210,7 +232,9 @@ public class PersonInfo {
 				+ ", occupation=" + occupation + ", companyName=" + companyName
 				+ ", revisionHistory=" + revisionHistory + "]";
 	}
-	PersonInfo encrypt(){
+	
+	//angelo revision (addition)
+	public PersonInfo encrypt(){
 		encryption aes = new encryption();
 		PersonInfo personinfo = new PersonInfo();
 		personinfo.setAge(age);
@@ -222,21 +246,41 @@ public class PersonInfo {
 		personinfo.setLastName(aes.encrypt(lastName));
 		personinfo.setMaidenName(aes.encrypt(maidenName));
 		personinfo.setOccupation(aes.encrypt(occupation));
-		personinfo.setRevisionHistory(revisionHistory.encrypt());
-		personinfo.setSecurityAnswer(aes.encrypt(securityAnswer));
+		personinfo.setRevisionHistory(revisionHistory);
 		personinfo.setSecurityAnswer(aes.encrypt(securityAnswer));
 		personinfo.setSecurityQuestion(aes.encrypt(securityQuestion));
 		personinfo.setSex(aes.encrypt(sex));
-		personinfo.setAddresses(addresses);
-		personinfo.setContacts(contacts);
 		for(int i=0;i<personinfo.contacts.size();i++){
-			personinfo.contacts.set(i, personinfo.contacts.get(i).encrypt());
+			personinfo.contacts.add(i, new Contact(contacts.get(i).encrypt()));
 		}
 		for(int i=0;i<personinfo.addresses.size();i++){
-			personinfo.addresses.set(i, personinfo.addresses.get(i).encrypt());
+			personinfo.addresses.set(i, new Address(addresses.get(i).encrypt()));
 		}
 		return personinfo ;
 	}
-	
+	public PersonInfo decrypt(){
+		encryption aes = new encryption();
+		PersonInfo personinfo = new PersonInfo();
+		personinfo.setAge(age);
+		personinfo.setCompanyName(aes.decrypt(companyName));
+		personinfo.setDateOfBirth(dateOfBirth);
+		personinfo.setEmail(aes.decrypt(email));
+		personinfo.setFirstName(aes.decrypt(firstName));
+		personinfo.setId(id);
+		personinfo.setLastName(aes.decrypt(lastName));
+		personinfo.setMaidenName(aes.decrypt(maidenName));
+		personinfo.setOccupation(aes.decrypt(occupation));
+		personinfo.setRevisionHistory(revisionHistory);
+		personinfo.setSecurityAnswer(aes.decrypt(securityAnswer));
+		personinfo.setSecurityQuestion(aes.decrypt(securityQuestion));
+		personinfo.setSex(aes.decrypt(sex));
+		for(int i=0;i<personinfo.contacts.size();i++){
+			personinfo.contacts.add(i, new Contact(contacts.get(i).decrypt()));
+		}
+		for(int i=0;i<personinfo.addresses.size();i++){
+			personinfo.addresses.set(i, new Address(addresses.get(i).decrypt()));
+		}
+		return personinfo ;
+	}
 
 }

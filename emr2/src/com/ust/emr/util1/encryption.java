@@ -44,14 +44,14 @@ public class encryption {
 			return "";
 		}
 	}
-	public static void main(String ...args){
-		Scanner sc = new Scanner(System.in);
-		String val = "";
-		System.out.print("Word: ");
-		val = sc.nextLine();
-		val = new encryption().encrypt(val);
-		System.out.println("Encrypt: "+val);
-		val = new encryption().decrypt(val);
-		System.out.println("decrypt: "+val);
-	}
+//	public static void main(String ...args){
+//		Scanner sc = new Scanner(System.in);
+//		String val = "";
+//		System.out.print("Word: ");
+//		val = sc.nextLine();
+//		val = new encryption().encrypt(val);
+//		System.out.println("Encrypt: "+val);
+//		val = new encryption().decrypt(val);
+//		System.out.println("decrypt: "+val);
+//	}
 }
