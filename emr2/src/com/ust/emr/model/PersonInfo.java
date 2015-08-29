@@ -1,5 +1,8 @@
 package com.ust.emr.model;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -250,11 +253,13 @@ public class PersonInfo {
 		personinfo.setSecurityAnswer(aes.encrypt(securityAnswer));
 		personinfo.setSecurityQuestion(aes.encrypt(securityQuestion));
 		personinfo.setSex(aes.encrypt(sex));
+		personinfo.contacts = new ArrayList<Contact>();
+		personinfo.addresses = new ArrayList<Address>();
 		for(int i=0;i<personinfo.contacts.size();i++){
 			personinfo.contacts.add(i, new Contact(contacts.get(i).encrypt()));
 		}
 		for(int i=0;i<personinfo.addresses.size();i++){
-			personinfo.addresses.set(i, new Address(addresses.get(i).encrypt()));
+			personinfo.addresses.add(i, new Address(addresses.get(i).encrypt()));
 		}
 		return personinfo ;
 	}
@@ -274,13 +279,26 @@ public class PersonInfo {
 		personinfo.setSecurityAnswer(aes.decrypt(securityAnswer));
 		personinfo.setSecurityQuestion(aes.decrypt(securityQuestion));
 		personinfo.setSex(aes.decrypt(sex));
+		personinfo.contacts = new ArrayList<Contact>();
+		personinfo.addresses = new ArrayList<Address>();
 		for(int i=0;i<personinfo.contacts.size();i++){
 			personinfo.contacts.add(i, new Contact(contacts.get(i).decrypt()));
 		}
 		for(int i=0;i<personinfo.addresses.size();i++){
-			personinfo.addresses.set(i, new Address(addresses.get(i).decrypt()));
+			personinfo.addresses.add(i, new Address(addresses.get(i).decrypt()));
 		}
 		return personinfo ;
 	}
-
+	public void ageCorrection(){
+		LocalDate now = new LocalDate();
+		int age = now.getYear() - dateOfBirth.getYear();
+		if(dateOfBirth.getYear()>now.getYear())
+			this.setAge(age);
+		else if(now.getMonthOfYear()==dateOfBirth.getMonthOfYear())
+			if(dateOfBirth.getDayOfMonth()>now.getDayOfMonth())
+				this.setAge(age);
+			else this.setAge(age+1);
+		else this.setAge(age+1);
+		
+	}
 }

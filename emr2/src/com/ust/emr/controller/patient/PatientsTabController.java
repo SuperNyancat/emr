@@ -82,9 +82,11 @@ public class PatientsTabController {
 	 * */
 	@RequestMapping(value="/view_all_patients.it")
 	public String viewAllPatients(HttpSession session, Model model) {
+		System.out.println("NURSE VIEWING PATENTS");
 		String username = session.getAttribute("user").toString();
 		session.setAttribute("user", username);
-
+		
+		System.out.println(username);
 		
 		/**
 		 * COMMENTS // DELETE LATER
@@ -109,7 +111,39 @@ public class PatientsTabController {
 		}
 		return "patient/patient-table";
 	}
-	
+//	@RequestMapping(value = "/page_patient.it")
+//	public String patientsTableAssembler(HttpSession session, Model model,@RequestParam("id") String page) {
+//		System.out.println("PAGINATE ASSEMBLER CONTROLLER");
+//		String username = session.getAttribute("user").toString();
+//		session.setAttribute("user", username);
+//
+//		try {
+//
+//			
+//			/**
+//			 * COMMENTS // DELETE LATER
+//			 * */
+//			try {
+//				Comment comment = commentsDao.getLatestCommentAdded("doctor", "patient", "table");
+//				model.addAttribute("comment", comment);
+//			} catch (DataAccessException e1) {
+//				model.addAttribute("comment", new Comment());
+//			}
+//			/**
+//			 * end comment
+//			 * */
+//			
+//			
+//			Doctor doctor = doctorDao.getDoctorByUsername(username);
+//			List<Patient> patients = doctorDao.getPatientsOfDoctorThatStartsWith(doctor,page);
+//			
+//			model.addAttribute("doctor", doctor);
+//			model.addAttribute("patients", patients);
+//		} catch (DataAccessException e) {
+//			model.addAttribute("errorMessage", e.getMessage());
+//		}
+//		return "patient/patient-table";
+//	}
 	
 	
 	

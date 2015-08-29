@@ -143,6 +143,7 @@ public class PatientCreateController {
 				model.addAttribute("doctor", doctor);
 			} else if (user.getRole().getRoleType().equalsIgnoreCase("nurse")) {
 				String doc = request.getParameter("chosenDoctor");
+				
 				doctor = doctorDao.getDoctorById(Long.parseLong(doc));
 				model.addAttribute("nurse", nurseDao.getNurseByUser(user));
 			}
@@ -165,9 +166,14 @@ public class PatientCreateController {
 			patient.getPersonInfo().setRevisionHistory(revisionHistory);
 			patient.setCurrentDoctor(doctor);
 			patientDao.createPatientOfDoctor(doctor, patient);
-		} catch (DataAccessException e) {
-			// TODO Auto-generated catch block
+		} 
+			catch(NullPointerException ne){
+				ne.printStackTrace();
+				return "redirect:/patient-table";
+			}
+			catch (DataAccessException e) {
 			e.printStackTrace();
+			return "redirect:/patient-table";
 		}
 		
 		return "redirect:/view_patient_profile.it?id=" + patient.getId();

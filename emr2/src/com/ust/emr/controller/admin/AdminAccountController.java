@@ -36,6 +36,8 @@ public class AdminAccountController {
 		
 		 try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			model.addAttribute("adminUser", user);		
 		} catch (DataAccessException e) {
 			model.addAttribute("errorMessage", e.getMessage());
@@ -56,6 +58,8 @@ public class AdminAccountController {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			model.addAttribute("adminUser", user);
 		} catch (DataAccessException e) {
 			model.addAttribute("errorMessage", e.getMessage());

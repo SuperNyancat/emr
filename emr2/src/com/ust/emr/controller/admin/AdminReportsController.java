@@ -96,6 +96,8 @@ public class AdminReportsController {
 				
 		try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			int year = 0;
 			if(y.equals("") || y.length() == 0 || y == null) {
 				year = LocalDate.now().getYear();

@@ -56,6 +56,8 @@ public class ViewMedicineController {
 		
 		 try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "/logout.it?";
 			Medicine medicine = adminDao.getMedicineById(id);
 			model.addAttribute("medicine", medicine);
 		} catch (DataAccessException e) {

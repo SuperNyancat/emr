@@ -57,7 +57,7 @@ public class ViewNurseProfileController {
 		 try {
 			User user = userDao.findUserByUsername(username);
 			Nurse nurse = nurseDao.getNurseById(id);
-			
+			nurse.getPersonInfo().ageCorrection();
 			if (user.getRole().getRoleType().equalsIgnoreCase("administrator")) {
 				model.addAttribute("adminUser", user);
 

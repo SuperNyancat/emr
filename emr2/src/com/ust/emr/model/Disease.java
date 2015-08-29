@@ -121,32 +121,5 @@ public class Disease {
 	public void setStage4Desc(String stage4Desc) {
 		this.stage4Desc = stage4Desc;
 	}
-	public Disease encrypt(){
-		encryption aes = new encryption();
-		Disease disease = new Disease();
-		disease.setId(id);
-		disease.setDescription(aes.encrypt(description));
-		disease.setName(aes.encrypt(name));
-		disease.setStage0Desc(aes.encrypt(stage0Desc));
-		disease.setStage1Desc(aes.encrypt(stage1Desc));
-		disease.setStage2Desc(aes.encrypt(stage2Desc));
-		disease.setStage3Desc(aes.encrypt(stage3Desc));
-		disease.setStage4Desc(aes.encrypt(stage4Desc));
-		disease.setType(aes.encrypt(type));
-		return disease;
-	}
-	public Disease decrypt(){
-		encryption aes = new encryption();
-		Disease disease = new Disease();
-		disease.setId(id);
-		disease.setDescription(aes.decrypt(description));
-		disease.setName(aes.decrypt(name));
-		disease.setStage0Desc(aes.decrypt(stage0Desc));
-		disease.setStage1Desc(aes.decrypt(stage1Desc));
-		disease.setStage2Desc(aes.decrypt(stage2Desc));
-		disease.setStage3Desc(aes.decrypt(stage3Desc));
-		disease.setStage4Desc(aes.decrypt(stage4Desc));
-		disease.setType(aes.decrypt(type));
-		return disease;
-	}
+	
 }

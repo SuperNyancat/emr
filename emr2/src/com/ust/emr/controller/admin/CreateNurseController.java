@@ -64,6 +64,8 @@ public class CreateNurseController {
 		
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,6 +82,8 @@ public class CreateNurseController {
 		System.out.println("CREATE NURSE ACCOUNT CONTROLLER");
 		
 		// set date created and role type
+		if(userDao.findUserById(id).getRole().getId()!=1)
+			return "redirect:/logout.it?";
 		RevisionHistory history = new RevisionHistory(LocalDate.now(), userDao.findUserById(id));
 		nurse.getPersonInfo().setRevisionHistory(history);
 		revisionHistoryDao.saveHistory(history);;

@@ -1,0 +1,5 @@
+package com.ust.emr.controller.patient;
+
+public class PagePatient {
+
+}

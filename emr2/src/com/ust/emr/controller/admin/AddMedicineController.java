@@ -36,6 +36,7 @@ public class AddMedicineController {
 		System.err.println("setup add medicine");
 		String username = session.getAttribute("user").toString();
 		session.setAttribute("user", username);
+		
 		User user = null;
 		
 		/**
@@ -54,6 +55,8 @@ public class AddMedicineController {
 		
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,6 +77,8 @@ public class AddMedicineController {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			adminDao.AddMedicine(medicine);
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block

@@ -57,6 +57,7 @@ public class ViewDoctorProfileController {
 		 try {
 			User user = userDao.findUserByUsername(username);
 			Doctor doctor = doctorDao.getDoctorById(id);
+			doctor.getPersonInfo().ageCorrection();
 			if (user.getRole().getRoleType().equalsIgnoreCase("administrator")) {
 				model.addAttribute("adminUser", user);
 			}

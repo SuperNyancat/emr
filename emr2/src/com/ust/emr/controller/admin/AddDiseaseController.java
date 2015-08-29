@@ -38,6 +38,8 @@ public class AddDiseaseController {
 		
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 		} catch (DataAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +57,8 @@ public class AddDiseaseController {
 		
 		String username = session.getAttribute("user").toString();
 		session.setAttribute("user", username);
+		if(user.getRole().getId()!=1)
+			return "redirect:/logout.it?";
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);

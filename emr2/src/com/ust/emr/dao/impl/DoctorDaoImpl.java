@@ -79,7 +79,21 @@ public class DoctorDaoImpl implements DoctorDao {
 			return patients;
 		}
 	}
-
+	
+	public List<Patient> getPatientsOfDoctorThatStartsWith(Doctor doctor, String page) throws DataAccessException {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Patient p WHERE p.enabled = '1' AND (p.currentDoctor.id= :id OR p.previousDoctor.id=:id) AND p.personInfo.firstName LIKE '"+page+"%'");
+		query.setParameter("id", doctor.getId());
+		@SuppressWarnings("unchecked")
+		List<Patient> patients = (List<Patient>) query.list();
+		sessionFactory.getCurrentSession().clear();
+		if (patients.isEmpty()) {
+			throw new DataAccessException("You currently have no patients that starts with " + page+".");
+		} else {
+			return patients;
+		}
+	}
+	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Doctor> getAllEnabledDoctors() throws DataAccessException {

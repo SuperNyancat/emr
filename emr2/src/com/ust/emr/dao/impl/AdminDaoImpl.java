@@ -1,5 +1,7 @@
 package com.ust.emr.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,11 +15,13 @@ import com.ust.emr.model.Disease;
 import com.ust.emr.model.Doctor;
 import com.ust.emr.model.Medicine;
 import com.ust.emr.model.Nurse;
+import com.ust.emr.util1.encryption;
 import com.ust.emr.utilities.DataAccessException;
 
 @Transactional(readOnly=false)
 @Repository("adminDao")
 public class AdminDaoImpl implements AdminDao {
+	private encryption encyption = new encryption();
 	private SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -113,13 +117,13 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public void AddMedicine(Medicine medicine) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(medicine.encrypt());
+		session.save(encyption.encrypt(medicine));
 	}
 
 	@Override
 	public void AddDisease(Disease disease) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(disease.encrypt());
+		session.save(encyption.encrypt(disease));
 	}
 
 	@Override
@@ -132,7 +136,7 @@ public class AdminDaoImpl implements AdminDao {
 		
 		Medicine medicine = (Medicine) query.uniqueResult();
 		
-		return medicine.decrypt();
+		return encyption.decrypt(medicine);
 	}
 
 	@Override
@@ -145,7 +149,7 @@ public class AdminDaoImpl implements AdminDao {
 		
 		Disease disease = (Disease) query.uniqueResult();
 		
-		return disease.decrypt();
+		return encyption.decrypt(disease);
 	}
 
 	@Override
@@ -154,7 +158,6 @@ public class AdminDaoImpl implements AdminDao {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from Medicine");
 		sessionFactory.getCurrentSession().clear();
-		
 //		query.setParameter("stat", 1);
 		@SuppressWarnings("unchecked")
 		List<Medicine> medicines= (List<Medicine>) query.list();
@@ -162,7 +165,7 @@ public class AdminDaoImpl implements AdminDao {
 		if (medicines.isEmpty()) {
 			throw new DataAccessException("There are no medicines registered in the system.");
 		} else {
-			return medicines;
+			return encyption.decryptMedicineList(medicines);
 		}
 	}
 
@@ -180,7 +183,7 @@ public class AdminDaoImpl implements AdminDao {
 		if (diseases.isEmpty()) {
 			throw new DataAccessException("There are no diseases registered in the system.");
 		} else {
-			return diseases;
+			return encyption.decryptDiseaseList(diseases);
 		}
 	}
 
@@ -198,7 +201,7 @@ public class AdminDaoImpl implements AdminDao {
 		if (diseases.isEmpty()) {
 			throw new DataAccessException("There are no diseases with that name.");
 		} else {
-			return diseases;
+			return encyption.decryptDiseaseList(diseases);
 		}
 	}
 	
@@ -223,20 +226,20 @@ public class AdminDaoImpl implements AdminDao {
 			if (medicines.isEmpty()) {
 				throw new DataAccessException("There are no medicines with that name.");
 			} else {
-				return medicines;
+				return encyption.decryptMedicineList(medicines);
 			}
 		}
 
 		@Override
 		public void updateDisease(Disease disease) {
 			Session session = sessionFactory.getCurrentSession();
-			session.update(disease.encrypt());
+			session.update(encyption.encrypt(disease));
 		}
 
 		@Override
 		public void updateMedicine(Medicine medicine) {
 			Session session = sessionFactory.getCurrentSession();
-			session.update(medicine.encrypt());
+			session.update(encyption.encrypt(medicine));
 		}
 
 		@Override

@@ -46,6 +46,13 @@ public class NurseDaoImpl implements NurseDao {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
+	public Nurse getNurseByUsername(String username) throws DataAccessException {
+		User loggedInUser = userDao.findUserByUsername(username);
+		return getNurseByUser(loggedInUser);
+	}
+	
+	@Override
 	public void createNurse(Nurse nurse) {
 		System.err.println("NurseDao - create nurse");
 		Session session = sessionFactory.getCurrentSession();
@@ -85,5 +92,27 @@ public class NurseDaoImpl implements NurseDao {
 			return patients;
 		}
 	}
+
+	@Override
+	public List<Patient> getPatientsOfNurse(Nurse nurse)
+			throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Patient> getPatientsOfNurseThatStartsWith(Nurse nurse,
+			String page) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Patient> getDisabledPatients(Nurse nurse)
+			throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

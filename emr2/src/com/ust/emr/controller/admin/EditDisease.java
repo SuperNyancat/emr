@@ -53,6 +53,8 @@ public class EditDisease {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			Disease disease = adminDao.getDiseaseById(id);
 			model.addAttribute("disease", disease);
 		} catch (DataAccessException e) {
@@ -68,7 +70,8 @@ public class EditDisease {
 		System.err.println("update disease controller");
 		String username = session.getAttribute("user").toString();
 		session.setAttribute("user", username);
-		
+		if(userDao.findUserById(id).getRole().getId()!=1)
+			return "redirect:/logout.it?";
 		disease.setId(id);
 		adminDao.updateDisease(disease);
 		return "redirect:/view_disease.it?id=" + disease.getId();

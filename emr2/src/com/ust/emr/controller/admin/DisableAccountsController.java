@@ -37,6 +37,8 @@ public class DisableAccountsController {
 		
 		try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			Doctor doctor = doctorDao.getDoctorById(id);
 			doctor.getUser().setEnabled(false);
 			doctor.getPersonInfo().getRevisionHistory().setDeletedBy(user);
@@ -60,6 +62,8 @@ public class DisableAccountsController {
 		
 		try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			Nurse nurse = nurseDao.getNurseById(id);
 			nurse.getPersonInfo().getRevisionHistory().setDeletedBy(user);
 			nurse.getPersonInfo().getRevisionHistory().setDateDeleted(LocalDate.now());
@@ -89,6 +93,8 @@ public class DisableAccountsController {
 		
 		try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			Doctor doctor = doctorDao.getDoctorById(id);
 			doctor.getUser().setEnabled(true);
 			doctor.getPersonInfo().getRevisionHistory().setModifiedBy(user);
@@ -112,6 +118,8 @@ public class DisableAccountsController {
 		
 		try {
 			User user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			Nurse nurse = nurseDao.getNurseById(id);
 			nurse.getUser().setEnabled(true);
 			nurse.getPersonInfo().getRevisionHistory().setModifiedBy(user);

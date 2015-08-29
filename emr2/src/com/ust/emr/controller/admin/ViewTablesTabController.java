@@ -55,6 +55,8 @@ public class ViewTablesTabController {
 		User  user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			List<Doctor> doctors = adminDao.getAllEnabledDoctors();
 			model.addAttribute("doctors", doctors);
 			
@@ -89,6 +91,8 @@ public class ViewTablesTabController {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			List<Nurse> nurses = adminDao.getAllEnabledNurses();
 			model.addAttribute("nurses", nurses);
 		} catch (DataAccessException e) {
@@ -124,6 +128,8 @@ public class ViewTablesTabController {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			List<Medicine> medicines = adminDao.getAllMedicines();
 			model.addAttribute("medicines", medicines);
 		} catch (DataAccessException e) {
@@ -159,6 +165,8 @@ public class ViewTablesTabController {
 		User user = null;
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 			List<Disease> diseases = adminDao.getAllDiseases();
 			model.addAttribute("diseases", diseases);
 		} catch (DataAccessException e) {

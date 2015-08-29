@@ -20,6 +20,7 @@ public interface DoctorDao {
 	
 	List<Doctor> getAllEnabledDoctors() throws DataAccessException;
 	List<Patient> getPatientsOfDoctor(Doctor doctor) throws DataAccessException;
+	List<Patient> getPatientsOfDoctorThatStartsWith(Doctor doctor,String page) throws DataAccessException;
 	List<Patient> getDisabledPatients(Doctor doctor) throws DataAccessException;
 	List<Doctor> getDoctorsOrderedBySpecialization() throws DataAccessException;
 	List<Doctor> getDoctorsBySpecialization(String specialization) throws DataAccessException;

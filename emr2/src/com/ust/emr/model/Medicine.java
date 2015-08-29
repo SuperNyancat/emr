@@ -78,24 +78,4 @@ public class Medicine {
 		this.sideEffects = sideEffects;
 	}
 	
-	public Medicine encrypt(){
-		encryption aes = new encryption();
-		Medicine medicine = new Medicine();
-		medicine.setId(id);
-		medicine.setBrandName(aes.encrypt(brandName));
-		medicine.setGenericName(aes.encrypt(genericName));
-		medicine.setSideEffects(aes.encrypt(sideEffects));
-		medicine.setUses(aes.encrypt(uses));
-		return medicine;
-	}
-	public Medicine decrypt(){
-		encryption aes = new encryption();
-		Medicine medicine = new Medicine();
-		medicine.setId(id);
-		medicine.setBrandName(aes.decrypt(brandName));
-		medicine.setGenericName(aes.decrypt(genericName));
-		medicine.setSideEffects(aes.decrypt(sideEffects));
-		medicine.setUses(aes.decrypt(uses));
-		return medicine;
-	}
 }

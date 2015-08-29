@@ -2,6 +2,7 @@ package com.ust.emr.dao;
 
 import java.util.List;
 
+import com.ust.emr.model.Doctor;
 import com.ust.emr.model.Nurse;
 import com.ust.emr.model.Patient;
 import com.ust.emr.model.User;
@@ -15,6 +16,9 @@ public interface NurseDao {
 	Nurse getNurseById(Long id);
 	
 	List<Patient> viewAllPatients() throws DataAccessException; // nurse only
-	
+	public Nurse getNurseByUsername(String username) throws DataAccessException;
+	List<Patient> getPatientsOfNurse(Nurse nurse) throws DataAccessException;
+	List<Patient> getPatientsOfNurseThatStartsWith(Nurse nurse,String page) throws DataAccessException;
+	List<Patient> getDisabledPatients(Nurse nurse) throws DataAccessException;
 	
 }

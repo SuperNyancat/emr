@@ -62,9 +62,11 @@ public class CreateDoctorController {
 		
 		try {
 			user = userDao.findUserByUsername(username);
+			if(user.getRole().getId()!=1)
+				return "redirect:/logout.it?";
 		} catch (DataAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return "login";
 		}
 		
 		model.addAttribute("adminUser", user);
@@ -80,6 +82,8 @@ public class CreateDoctorController {
 		session.setAttribute("user", username);
 		
 		// set date created and role type
+		if(userDao.findUserById(id).getRole().getId()!=1)
+			return "redirect:/logout.it?";
 		RevisionHistory history = new RevisionHistory(LocalDate.now(), userDao.findUserById(id));
 		doctor.getPersonInfo().setRevisionHistory(history);
 		revisionHistoryDao.saveHistory(history);
