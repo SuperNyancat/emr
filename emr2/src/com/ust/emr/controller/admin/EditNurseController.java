@@ -73,7 +73,7 @@ public class EditNurseController {
 		}
 		
 		
-		return "nurse/edit-nurse";
+		return "admin/edit-nurse";
 	}
 	
 	@RequestMapping(value="/update_nurse.it", method=RequestMethod.POST)

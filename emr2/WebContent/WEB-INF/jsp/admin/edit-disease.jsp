@@ -28,79 +28,70 @@
 
 <div id="wrap">
 <jsp:include page="../headers/admin-header.jsp">
-	<jsp:param name="title" value="Add Disease" />
+	<jsp:param name="title" value="Update Disease" />
 	<jsp:param name="selected" value="diseases" />
 </jsp:include>
 
-<div class="pageCtrl">
 
-<ul class="ctrlBtn listSpace">
-	<li><span class="btn"><input type="button" value="Edit" class="btnEdit"></span></li>
-	<li><span class="btn"><input type="button" value="Delete" class="btnDel"></span></li>
-</ul>
+    <!-- Page Content -->
+	<form:form class="crmForm" commandName="disease" method="post" action="add_disease.it?id=${adminUser.getId() }">
+    <div id="page-wrapper">
+    <div class="div-left_disease">
+        <p class="cr_doc">CREATING NEW DISEASE</p>
+            <div class="form-inline">
+
+        <label for="text" class="sr-only">Disease Name</label>
+        <form:input type="text" path="name" class="form-control" value="${disease.getName() }" required="true"/>
+        <br><br>
+        <table>
+            <tr class="jumbotron_disease">
+                <td class="col-md-8" align="center">Stage</td>
+                <td class="col-md-8" align="center">Description</td>
+            </tr>
+
+            <tr class="jumbotron_disease_extension">
+            <div class="checkbox-inline">
+                <td class="col-md-3" align="center"><label class="checkbox-inline"><input type="checkbox" name="stage1">1</label></td>
+                <td class="col-md-3" align="center"><label for="text" class="sr-only">Stage 1</label>
+                <form:input path="stage1Desc" class="form-control" value="${disease.getStage1Desc() }"/></td>
+            </div>
+                </tr>
+
+                <tr class="jumbotron_disease_extension">
+                <div class="checkbox-inline">
+                <td  class="col-md-3" align="center"><label class="checkbox-inline"><input type="checkbox" name="stage2">2</label></td>
+                <td  class="col-md-3" align="center"><label for="text" class="sr-only">Stage 2</label>
+                <form:input path="stage2Desc" class="form-control" value="${disease.getStage2Desc() }"/></td>
+            </div>
+                </tr>
+
+                <tr class="jumbotron_disease_extension">
+                <div class="checkbox-inline">
+                <td class="col-md-3" align="center"><label class="checkbox-inline"><input type="checkbox" name="stage3">3</label></td>
+                <td class="col-md-3" align="center"><label for="text" class="sr-only">Stage 3</label>
+                <form:input path="stage3Desc" class="form-control" value="${disease.getStage3Desc() }"/></td>
+            </div>
+                </tr>
+
+                <tr class="jumbotron_disease_extension">
+                <div class="checkbox-inline">
+                <td class="col-md-3" align="center"><label class="checkbox-inline"><input type="checkbox" name="stage4">4</label></td>
+                <td class="col-md-3" align="center"><label for="text" class="sr-only">Stage 4</label>
+                <form:input path="stage4Desc" class="form-control" value="${disease.getStage4Desc() }"/></td>
+            </div>
+                </tr>
+            <tr class="jumbotron_disease_extension">
+                <td class="col-md-3" align="center"><button type="button" class="btn btn-default-create">Add Stage</button></td>
+                <td class="col-md-3" align="center"><button type="button" class="btn btn-default-create">Delete Stage</button></td>
+            </tr>
+        </table>
+
 </div>
-
-<div class="pageCtrl">
 </div>
-
-<div class="content-wrap">	
-	<div class="wrapper">
-		<form:form class="crmForm" commandName="disease" method="post" action="add_disease.it?id=${adminUser.getId() }">
-        <section class="settingBody clrfix">		
-			<div class = "left">
-				<jsp:include page="../headers/admin-left.jsp" />
-			</div>
-			
-			<div class="right">			
-			<h4>New Disease</h4>
-			<form>
-			<ul>
-				<li><label>Disease:</label><form:input type="text" path="name" value="${disease.getName() }"/></li><br>
-
-		<li><div class="tableHeadertransdis clrfix">
-
-			<table border="1" class="navigation">
-				<tr>
-					<td class="pro" style="width:1px">&nbsp</a></td>
-					<td class="pro" style="width:2px; padding-left:1px; padding-right:1px; text-align:center;">Stage</a></td>
-					<td class="ind" style="width:150px; text-align:center">Description</a></td>
-				</tr>
-			</table>
-		</div>
-    <table id="dataTable" width="750px" border="1">
-	        <tr>
-            <td><input type="checkbox" name="chk"/></td>
-            <td>1</td>
-            <td><form:input value="${disease.getStage1Desc() }" path="stage1Desc" /></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="chk"/></td>
-            <td>2</td>
-            <td><form:input value="${disease.getStage2Desc() }" path="stage2Desc" /></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="chk"/></td>
-            <td>3</td>
-            <td><form:input value="${disease.getStage3Desc() }" path="stage3Desc" /></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="chk"/></td>
-            <td>4</td>
-            <td><form:input value="${disease.getStage4Desc() }" path="stage4Desc" /></td>
-        </tr>
-
-    </table>
-	<ul>
-		<li style="padding-left:290px">
-			<span class="btn"><input type="button" class="btnNew" value="Add Stage" onclick="addRow('dataTable')" /></span>	
-			<span class="btn"><input type="button" class="btnDel" value="Delete Stage" onclick="deleteRow('dataTable')" /></span>
-		</li>
-	</ul>
-</li>
-
-
-				<br><li><label>Type:</label>
-					<form:select path="type">
+    <div class="div-right_disease">
+        <div class="form-inline">
+                <li><label for="text" class="sr-only">Type</label>
+						<form:select path="type" required="true">
 						<option hidden="None">None</option>
 						<option value="Infectious">Infectious</option>
 						<option value="Contagious">Contagious</option>
@@ -112,34 +103,28 @@
 						<option value="Organic Disease">Organic Disease</option>
 						<option value="Mental Disorder">Mental Disorder</option>
 					</form:select></li>
-			</form>
-			</ul>
-				<label>Description:</label><form:textarea value="${disease.getDescription() }" path="description" rows="4" cols="50" style="width:500px; height:100px;" />	
-			</div>
-								<section>
-									<ul class="btnForm">
-									<font style="padding-left:360px"></font>
-										<span class="btn"><input type="submit"
-												value="Add Disease" class="btnSave"></span>
-										<a href="view_diseases.it"><span class="btn"><input type="button"
-												value="Cancel" class="btnCancel"></span></a>
-										<font style="padding-left:360px"></font>	
-										<span class="btn"><input type="button"
-											value="Back to Top" class="btnTop"></span>
-									</ul>
-								</section>	
-		</section>	
-		</form:form>	
-		</div>	
-</div>
-	
-<footer>	
-	<span class="copy"><a href="">&copy; 2014 Pendragons</a></span>
-</footer>
+        <br><br>
+        <label for="text" class="sr-only">Description</label>
+        <form:textarea required="true" path="description" rows="4" cols="50" type="text"  class="form-control" value="${disease.getDescription() }" />
+        <br>
+        </div>
+    </div>
+ </div>
+ <div class="div_button_disease">
+        <table>
+            <tr>
+             <td class="col-md-8" align="center"><input type="submit" value = Edit Disease"class="btn btn-default-create"/></td>
+            <td class="col-md-8" align="center"><a href="view_medicines.it"><input type="button" value="Cancel" class="btn btn-default-cancel" onClick="viewPotentialsList()"/></a></td>
+            </tr>
+            </table>
+        </div>
+	</form:form>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
 
-	<script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/scripts.js"></script>
-	<script src="js/buttons.js"></script>
-	<script src="js/addDeleteRows.js"></script>	
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

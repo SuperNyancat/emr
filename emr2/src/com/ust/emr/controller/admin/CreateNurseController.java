@@ -74,7 +74,7 @@ public class CreateNurseController {
 		
 		model.addAttribute("adminUser", user);
 		model.addAttribute("nurse", new Nurse());
-		return "nurse/create-nurse";
+		return "admin/create-nurse";
 	}
 	
 	@RequestMapping(value = "/create_nurse.it", method = RequestMethod.POST)

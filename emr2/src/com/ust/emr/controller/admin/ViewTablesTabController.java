@@ -99,7 +99,7 @@ public class ViewTablesTabController {
 			model.addAttribute("errorMessage", e.getMessage());
 		}
 		model.addAttribute("adminUser", user);
-		return "nurse/nurses-table";
+		return "admin/nurses-table";
 	}
 	
 	

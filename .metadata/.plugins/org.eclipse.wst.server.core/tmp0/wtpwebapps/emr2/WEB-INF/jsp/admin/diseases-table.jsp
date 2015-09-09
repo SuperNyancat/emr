@@ -13,7 +13,6 @@
 
 <body>
 
-<div id="wrap">
 <jsp:include page="../headers/admin-header.jsp">
 	<jsp:param name="title" value="Diseases" />
 	<jsp:param name="selected" value="diseases" />

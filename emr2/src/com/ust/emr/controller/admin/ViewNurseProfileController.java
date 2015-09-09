@@ -68,6 +68,6 @@ public class ViewNurseProfileController {
 			e.printStackTrace();
 		}
 		
-		return "nurse/view-nurse-profile";
+		return "admin/view-nurse-profile";
 	}
 }

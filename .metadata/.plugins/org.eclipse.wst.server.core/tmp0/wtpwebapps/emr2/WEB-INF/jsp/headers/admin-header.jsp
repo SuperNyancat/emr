@@ -11,19 +11,6 @@
 <title>${param.title}</title>
 <meta charset="utf-8">
 	<script type='text/javascript' src='http://code.jquery.com/jquery-git2.js'></script>
-
-	<link rel="stylesheet" href="resources/css/reset.css">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>	
-	<link rel="stylesheet" href="resources/css/template.css">
-	<link rel="stylesheet" href="resources/css/forms.css">
-	<link rel="stylesheet" href="resources/css/form-popup.css">
-	<link rel="stylesheet" href="resources/css/template-table.css">
-	<link rel="stylesheet" href="resources/css/homepage.css">	
-	<link rel="stylesheet" href="resources/css/tabs.css">	
-	<link rel="stylesheet" href="resources/css/settings.css">
-	<link rel="stylesheet" href="resources/css/expandCollapse.css">
-	<link rel="stylesheet" href="resources/css/promptmessage.css">
-	
 	
 	<script src="resources/js/addDeleteRows.js"></script>
 	<script src="resources/js/buttons.js"></script>
@@ -35,45 +22,50 @@
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<![endif]-->
-</head>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<body>
+    <title>Welcome Admin!</title>
 
-	<div id="wrap">
-		<header>
-			<h1></h1><p class="loginTitle1">University of Santo Tomas Hospital<br>Joint and Bone Center</p>
-		
-			<div class="toplinks">
-		<ul>
-			<li><a href="admin_view.it">My Account</a></li>
-		</ul>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
-		<span class="userInfo">
-			<a href="#"><img src="resources/images/icon_user.jpg" alt=""></a>
-		</span>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css">
 
-		<div class="userDetails">
-			<figure>
-				<img src="resources/images/img_user.jpg" alt="" >
-			</figure>
-			<h5>My Account</h5>
-			<p>${adminUser.getUsername()}</p>
-			<form action="logout.it" method="get">
-				<p class="button">
-					<span class="btn"><input type="submit" value="Sign Out"
-						class="btnExit"></span>
-				</p>
-			</form>
-		</div>
-	</div>
-		  </header>
-		</div>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+	<div class="page-title-container">
+    <h4 align="center">UNIVERSITY OF SANTO TOMAS HOSPITAL</h4>
+    <h1 align="center">Joint and Bone Center</h1>
+    <div class="logo_2">
+        <img src="resources/images/ust_logo.png">
+        </div>
+     <div class="logo">
+        <img src="resources/images/usth_logo.png">
+        </div>
+        </div>		
 
-
-
-		<nav>
-			<ul class="menu">
-				<c:url var="homeUrl" value="admin_homepage.it" />
+    <!-- Navigation -->
+   <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                	<c:url var="homeUrl" value="admin_homepage.it" />
 				<c:url var="doctorsUrl" value="view_doctors.it" />
 				<c:url var="NursesUrl" value="view_nurses.it" />
 				<c:url var="reportsUrl" value="view_reports.it" />
@@ -93,30 +85,30 @@
 				<a href="${DiseasesUrl }">Diseases</a></li>
 				<li class="${param.selected == 'reports' ? 'selected' : ''}">
 				<a href="${ReportsUrl }">Reports</a></li>
-				
-				
-			
-			</ul>
-			
-			<!-- <div class="rOptions">
-				<span class="moreOpt">
-					<a href="" title=""><img src="resources/images/icon_morectrl.png" alt="More Options"></a>
-				</span>			
-				<div class="moreOptList">
-					<ul class="list1">
-						<li><a href="">New Patient</a></li>
-						<li><a href="">New Account</a></li>
-					</ul>	
-					<ul class="list2">
-						<li><a href="new_task.html">New Task</a></li>
-						<li><a href="new_event.html">New Appointment</a></li>
-					</ul>		
-				</div>
-				
-				<form class="searchbar">
-					<input type="text" value="" placeholder="Search" >	
-				</form> 
-			</div>-->
-			
-		</nav>
-</body>
+                </ul>
+            
+                <div class="navbar-header navbar-right">
+
+                 <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Settings</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="admin_view.it">Edit Profile</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Help</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="logout.it?">Logout</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+            <!-- /.container -->
+       </div>
+    </nav>
+</head>
+
+	 <!-- jQuery Version 1.11.1 -->
+    <script src="resources/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>

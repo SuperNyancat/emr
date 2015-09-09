@@ -1,0 +1,393 @@
+
+/*HEADER index.html*/
+h1 {
+    color: #FFB600;
+    font-family: Rockwell;
+    font-size:400%;
+    margin-top: -16px;
+}
+h4 {
+	margin-top: 25px;
+	font-size:175%;
+	font-family: Rockwell;
+	
+}
+
+.navbar-default {
+	border-color: #FFB600;
+	background-color: #FFB600;
+	margin-top: 30px;
+  
+}
+
+
+
+.navbar-default .navbar-nav>li>a {
+	left: -90px;
+	font-family: Rockwell;
+	font-size: 150%;
+	color: #FFFFFF;
+}
+
+.navbar-default:hover .navbar-nav>li>a:hover {
+  left: -90px;
+  font-family: Rockwell;
+  font-size: 150%;
+  color: #FFFFFF;
+  background-color: #ffd773;
+}
+
+.navbar-default:active .navbar-nav>li>a.active {
+  left: -90px;
+  font-family: Rockwell;
+  font-size: 150%;
+  color: #FFFFFF;
+  background-color: #ffd773;
+}
+
+.logo {
+  position: absolute;
+  right: 30px;
+  margin-right: 25px;
+  top: 20px;
+  width: 100px;
+
+}
+
+.logo img{
+  width: 100%;
+  height: auto;
+}
+
+
+.logo_2 {
+  position: absolute;
+  left: 30px;
+  margin-left: 25px;
+  top: 20px;
+  width: 100px;
+}
+
+.logo_2 img{
+  width: 100%;
+  height: auto;
+}
+
+
+.navbar-default .navbar-brand {
+
+	font-family: Rockwell;
+	font-size: 150%;;
+	color: #FFFFFF;
+}
+
+.container-fluid {
+    margin: 1em 0 0.5em 0;
+	  width: 150px;
+    position: fixed;
+    font-size: 30px;
+    line-height: 40px;
+    background-color: #ffd773;
+    border: 1px solid #fff;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    border-radius: 0 10px 0 10px;
+	  font-family: Rockwell;
+    left: 350px;
+    top: 210px;
+}
+
+.doc_icon {
+  position: fixed;
+  left: 350px;
+  margin-left: 15px;
+  top: 350px;
+  width: 130px;
+}
+
+.doc_icon img{
+  width: 100%;
+  height: auto;
+}
+
+.jumbotron_doc {
+  background-color:#eaeaea;
+  padding: 30px 15px;
+  margin-bottom: 30px;
+}
+
+.jumbotron_doc>p {
+	  color: #FFB600;
+    font-family: Rockwell;
+    font-size:150%;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+.jumbotron_doc:hover {
+    background: #D8D8D8;
+    border: 0;
+    border-style: none;
+}
+
+.desc {
+	  color: #333;
+    font-family: Arial;
+    font-size:80%;
+    margin-top: -20px;
+}
+
+.nurse_icon {
+  position: fixed;
+  left: 520px;
+  margin-left: 10px;
+  top: 350px;
+  width: 130px;
+}
+
+.nurse_icon img{
+  width: 100%;
+  height: auto;
+}
+
+
+.jumbotron_nurse {
+  background-color:#eaeaea;
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  line-height: 28px;
+}
+
+.jumbotron_nurse>p {
+	  color: #FFB600;
+    font-family: Rockwell;
+    font-size:150%;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    
+}
+
+.jumbotron_nurse:hover {
+	  background: #D8D8D8;
+    border: 0;
+    border-style: none;
+}
+
+.med_icon {
+  position: fixed;
+  left: 690px;
+  margin-left: 8px;
+  top: 350px;
+  width: 140px;
+  margin-right: 10px;
+}
+
+.med_icon img{
+  width: 80%;
+  height: auto;
+}
+
+.jumbotron_med {
+  background-color: #eaeaea;
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  line-height: 40px;
+}
+
+.jumbotron_med>p {
+  color: #FFB600;
+    font-family: Rockwell;
+    font-size:140%;
+    font-weight: bold;
+    margin-top: 11px;
+    margin-bottom: -10px;
+}
+
+.jumbotron_med:hover {
+  background: #D8D8D8;
+    border: 0;
+    border-style: none;
+}
+
+.dis_icon {
+  position: fixed;
+  left: 870px;
+  margin-left: 8px;
+  top: 350px;
+  width: 140px;
+  margin-right: 10px;
+}
+
+.dis_icon img{
+  width: 80%;
+  height: auto;
+}
+
+.jumbotron_dis {
+ background-color:#eaeaea;
+  padding: 30px 15px;
+  margin-bottom: 30px;
+  line-height: 40px;
+}
+
+.jumbotron_dis>p {
+  color: #FFB600;
+    font-family: Rockwell;
+    font-size:140%;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    
+}
+
+.jumbotron_dis:hover {
+  background: #D8D8D8;
+    border: 0;
+    border-style: none;
+}
+
+/*Create doctor part create_doctor.html*/
+
+.cr_doc {
+  margin-top: 25px;
+  font-size:175%;
+  font-family: Rockwell;
+  color: #FFB600;
+  
+}
+
+.requirement {
+  font-family: Rockwell;
+  color: red;
+  display: inline-block;
+}
+
+h3 {
+  font-family: Rockwell;
+}
+
+.inputAdd {
+  width: 200px;
+}
+
+.div-left {
+  float: left;
+  width: 60%;
+  padding-left: 85px;
+}
+
+.div-right {
+  float: right;
+  width: 40%;
+  padding-right: 85px;
+}
+
+.sec_ques {
+  font-family: arial;
+  font-weight: bold;
+}
+
+.radio-inline {
+  color: #909090;
+}
+
+
+@font-face {
+    font-family: 'bignoodle-titling';
+    src: local(big_noodle_titling), url('fonts/big_noodle_titling.ttf') format('truetype');
+}
+
+.btn-default-create {
+  background-color: #FFB600;
+  font-family: 'bignoodle-titling', Verdana, Tahoma;
+  color: #fff;
+}
+
+
+.btn-default-cancel {
+  background-color: #a1a1a0;
+  font-family: 'bignoodle-titling', Verdana, Tahoma;
+  color: #fff;
+}
+
+
+/**MEDICINES**/
+
+.div-right_med {
+  float: right;
+  width: 40%;
+  padding-right: 85px;
+  padding-top: 60px;
+  margin-top: 8px;
+}
+
+/***DISEASE**/
+.jumbotron_disease {
+  float: left;
+ background-color:#fffbf2;
+ padding: 10px 180px;
+}
+.jumbotron_disease_extension {
+  float: left;
+  background-color: #FFFFFF;
+  padding: 10px 180px;
+}
+
+.div-right_disease {
+  float: right;
+  width: 45%;
+  padding-right: 85px;
+  padding-top: 60px;
+}
+
+.div-left_disease {
+  float: left;
+  width: 45%;
+  padding-left: 85px;
+}
+
+/**DIV BUTTONS**/
+
+.div_button {
+  position: absolute;
+  right: 30px;
+  margin-right: 675px;
+  margin-bottom: 20px;
+  bottom: -480px;
+  width: 100px;
+}
+
+.div_button_nurse {
+  position: absolute;
+  right: 30px;
+  margin-right: 675px;
+  margin-bottom: 20px;
+  bottom: -380px;
+  width: 100px;
+}
+
+.div_button_med {
+  position: absolute;
+  right: 30px;
+  margin-right: 690px;
+  margin-bottom: 20px;
+  bottom: 50px;
+  width: 100px;
+}
+
+.div_button_disease {
+  position: absolute;
+  right: 30px;
+  margin-right: 690px;
+  margin-bottom: 20px;
+  bottom: -100px;
+  width: 100px;
+}
+
+a {
+  border: 0;
+  border-style: none;
+  text-decoration: none;
+}

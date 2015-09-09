@@ -9,21 +9,17 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	</head>
+	
+</head>
 
 <body>
 
 <div id="wrap">
 <jsp:include page="../headers/admin-header.jsp">
-	<jsp:param name="title" value="Edit Medicine" />
+	<jsp:param name="title" value="Update Medicine" />
 	<jsp:param name="selected" value="medicines" />
 </jsp:include>
 
-<div class="pageCtrl">
-
-<ul class="ctrlBtn listSpace">
-</ul>
-</div>
 
 <div class="pageCtrl">
 </div>
@@ -36,33 +32,42 @@
 	
 
 	<form:form method="post" class="crmForm" commandName="medicine" action="update_medicine.it?id=${medicine.getId() }">
-			
-            <section class="settingBody clrfix">		
-			<div class = "left">
-				<jsp:include page="../headers/admin-left.jsp" />
-			</div>
-			
-			<div class="right">			
-			<h4>Edit Medicine</h4>
-				Generic Name:<form:input type="text" path="genericName" required="true" value="${medicine.getGenericName() }"/><br>
-				Brand Name:<form:input type="text" path="brandName" required="true" value="${medicine.getBrandName() }"/><br></br>
-				Uses: <form:textarea rows="4" cols="50" style="width:500px; height:100px;" path="uses" value="${medicine.getUses() }"/><br></br>
-				Side Effects: <form:textarea rows="4" cols="50" style="width:500px; height:100px;" path="sideEffects" value="${medicine.getSideEffects() }" /><br>	
-			<br/><br/><br/><br/>
-			
-			<section>
-				<ul class="btnForm">
-					<span class="btn"><input type="submit"
-							value="Save" class="btnSave"></span>
-					<a href="view_medicines.it"><span class="btn"><input type="button"
-							value="Cancel" class="btnCancel" onClick="viewPotentialsList()"></span></a>
-				<font style="padding-left:360px"></font>	
-					<span class="btn"><input type="button"
-						value="Back to Top" class="btnTop"></span>
-				</ul>
-			</section>
-			
-			</form:form>
+    <div class="div-left">
+        <p class="cr_doc">CREATING NEW MEDICINE</p>
+            <div class="form-inline">
+
+        <label for="text" class="sr-only">Generic Name</label>
+        <form:input type="text" path="genericName" class="form-control" value="${medicine.getGenericName() }" required="true"/>
+        <br><br>
+        <label for="text" class="sr-only">Uses</label>
+        <form:textarea  rows="4" cols="50" type="text" path="uses"  class="form-control" value="${medicine.getUses() }" required="true"/>
+
+</div>
+</div>
+    <div class="div-right_med">
+        <div class="form-inline">
+                <label for="text" class="sr-only">Brand Name</label>
+        <form:input type="text" path="brandName" class="form-control" value="${medicine.getBrandName() }" required="true"/>
+        <br><br>
+        <label for="text" class="sr-only">Side Effects</label>
+        <form:textarea  rows="4" cols="50" type="text" path="sideEffects" class="form-control" value="${medicine.getSideEffects() }" required="true"/>
+        <br>
+        </div>
+    </div>
+    <div class="div_button_med">
+          <table>
+            <tr>
+            <td class="col-md-8" align="center"><input type="submit" value = "Edit Medicine"class="btn btn-default-create"/></td>
+            <td class="col-md-8" align="center"><a href="view_medicines.it"><input type="button" value="Cancel" class="btn btn-default-cancel" onClick="viewPotentialsList()"/></a></td>
+            </tr>
+            </table>
+        </div>
+	</form:form>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 			
 			
 			
@@ -79,9 +84,6 @@
 	
 </div>
 	
-<footer>	
-	<span class="copy"><a href="">&copy; 2014 Pendragons</a></span>
-</footer>
 
 </div>
 

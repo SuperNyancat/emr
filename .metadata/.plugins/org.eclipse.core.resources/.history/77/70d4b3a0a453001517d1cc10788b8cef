@@ -1,0 +1,106 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+</head>
+
+<body>
+
+<div id="wrap">
+<jsp:include page="../headers/admin-header.jsp">
+	<jsp:param name="title" value="Add Medicine" />
+	<jsp:param name="selected" value="medicines" />
+</jsp:include>
+
+<div class="pageCtrl">
+
+<ul class="ctrlBtn listSpace">
+	<li><span class="btn"><input type="button" value="Edit" class="btnEdit"></span></li>
+	<li><span class="btn"><input type="button" value="Delete" class="btnDel"></span></li>
+</ul>
+</div>
+
+<div class="pageCtrl">
+</div>
+
+<div class="content-wrap">
+	
+	<div class="wrapper">
+	
+
+	
+
+	<form:form method="post" class="crmForm" commandName="medicine" action="add_medicine.it?id=${adminUser.getId() }">
+    <div class="div-left">
+        <p class="cr_doc">CREATING NEW MEDICINE</p>
+            <div class="form-inline">
+
+        <label for="text" class="sr-only">Generic Name</label>
+        <form:input type="text" path="genericName" class="form-control" placeholder="Generic Name" required autofocus>
+        <br><br>
+        <label for="text" class="sr-only">Uses</label>
+        <form:textarea  rows="4" cols="50" type="text" path="uses"  class="form-control" placeholder="Uses" required autofocus></textarea>
+
+</div>
+</div>
+    <div class="div-right_med">
+        <div class="form-inline">
+                <label for="text" class="sr-only">Brand Name</label>
+        <form:input type="text" path="brandName" class="form-control" placeholder="Brand Name" required autofocus>
+        <br><br>
+        <label for="text" class="sr-only">Side Effects</label>
+        <form:textarea  rows="4" cols="50" type="text" path="sideEffects" class="form-control" placeholder="Side Effects" required autofocus></textarea>
+        <br>
+        </div>
+    </div>
+    <div class="div_button_med">
+        <table>
+            <tr>
+            <span class="btn"><input type="submit"
+							value="Add Medicine" class="btnSave"></span>
+            <a href="view_medicines.it"><span class="btn"><input type="button"
+							value="Cancel" class="btnCancel" onClick="viewPotentialsList()"></span></a>
+				<font style="padding-left:360px"></font>	
+					<span class="btn"><input type="button"
+						value="Back to Top" class="btnTop"></span>
+            </tr>
+            </table>
+        </div>
+	</form:form>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+			
+			
+			
+			</div>
+		</section>			
+			
+	
+		
+
+	</form>
+
+	
+	
+	
+</div>
+	
+<footer>	
+	<span class="copy"><a href="">&copy; 2014 Pendragons</a></span>
+</footer>
+
+</div>
+
+</body>
+</html>
